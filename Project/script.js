@@ -38,11 +38,33 @@ function chooseExpenses() {
         
     }
 }
+
 chooseExpenses();
 
-appData.moneyPerDay = (appData.budget / 30).toFixed(2);
+function chooseOptExpenses() {
+    for (let i = 0; i < 3; i++) {
+        let a = prompt("Статья необязательных расходов?", ''),
+            b = i+1;
+    
+        if ( (typeof(a))=== 'string' && (typeof(a)) != null && a != '' && 
+            a.length < 50) {
+                console.log('done');
+                appData.optionalExpenses[b] = a;
+            } else {
+                --i;
+            }
+        
+    }
+}
 
-alert('Ежедневный бюджет: ' + appData.moneyPerDay);
+chooseOptExpenses();
+
+function detectDayBudget() {
+    appData.moneyPerDay = (appData.budget / 30).toFixed(2);
+    alert('Ежедневный бюджет: ' + appData.moneyPerDay);
+}
+
+detectDayBudget();
 
 function checkSavings() {
     if (appData.savings == true) {
